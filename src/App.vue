@@ -4,7 +4,7 @@
           <h2 class="title is-2">Star Wars characters</h2>
           <LoaderBulma v-if="!active" />
           <PeopleTable v-show="active" @newPlanet="addPlanet" @setPlanet="showPlanet" @showTable="active = true" />
-          <PlanetModal :info="currentPlanet" @setPlanet="showPlanet" />
+          <PlanetModal v-if="currentPlanet !== '{}'" :info="currentPlanet" @setPlanet="showPlanet" />
       </div>
     </div>
 </template>
@@ -14,12 +14,17 @@ import PeopleTable from './components/PeopleTable.vue'
 import PlanetModal from './components/PlanetModal.vue'
 import LoaderBulma from './components/LoaderBulma.vue'
 
+import Slug from './filters/Slug.js';
+
 export default {
     name: 'App',
     components: {
         PeopleTable,
         PlanetModal,
         LoaderBulma
+    },
+    filters: {
+        Slug
     },
     data() {
       return {
@@ -35,7 +40,7 @@ export default {
     },
     methods: {
         addPlanet(content) {
-          this.planets[content.name] = content;
+          this.planets[this.$options.filters.Slug(content.name)] = content;
         },
         showPlanet(id) {
           if (!id) this.planet = '';

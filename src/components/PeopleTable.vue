@@ -25,10 +25,12 @@
 
 <script>
 import FormatDate from '../filters/FormatDate.js';
+import Slug from '../filters/Slug.js';
 
 export default {
     filters: {
-        FormatDate
+        FormatDate,
+        Slug
     },
     data() {
         return {
@@ -56,7 +58,7 @@ export default {
     },
     methods: {
         setPlanet(id) {
-            this.$emit('setPlanet', id);
+            this.$emit('setPlanet', this.$options.filters.Slug(id));
         }
     },
     async created() {

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="Object.keys(planet).length" class="'modal is-active">
+    <div class="modal is-active">
         <div class="modal-background"></div>
         <div class="modal-content">
             <header class="modal-card-head">
@@ -15,7 +15,7 @@
                 </ul>
             </section>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
+        <button class="modal-close is-large" aria-label="close" @click="closeModal()"></button>
     </div>
 </template>
 
@@ -44,6 +44,5 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
 </style>
